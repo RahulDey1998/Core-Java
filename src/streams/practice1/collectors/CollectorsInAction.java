@@ -35,7 +35,7 @@ public class CollectorsInAction {
 			TreeSet<Employee> empSet = empList.stream()
 					.collect(Collectors.toCollection(TreeSet :: new));
 			
-//			empSet.forEach(System.out::println);
+		    empSet.forEach(System.out::println);
 			
 			//collecting to map
 			Map<String, Employee> empMap = empList.stream()
