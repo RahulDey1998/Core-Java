@@ -5,12 +5,13 @@ import java.util.stream.Stream;
 
 public class RotateMatrix90 {
     public static void main(String[] args) {
-        int[][] arr = {{1,2,3},{4,5,6},{7,8,9}};
-        int[][] arr1 = {{1,2,3,4,6},{5,6,7,8,7},{1,2,3,4,4},{5,6,7,8,3},{9,8,7,6,1}};
+        int[][] arr = {{1,2,3,5},{7,4,5,6},{1,7,8,9},{4,7,6,2}};
+        int[][] arr1 = {{1,2,3,4,6,3},{5,6,7,8,7,4},{1,2,3,4,4,2},{5,6,7,8,3,5},{9,8,7,6,1,6},{3,5,1,4,7,6}};
+        int[][] arr2 = {{1,2,3,4,6,3,4},{5,6,7,8,7,4,3},{1,2,4,3,4,4,2},{5,5,6,7,8,3,5},{9,8,7,7,6,1,6},{3,5,6,1,4,7,6},{6,4,3,7,8,5,9}};
         System.out.println("Original Array ->");
-        printArray(arr1);
+        printArray(arr2);
         System.out.println();
-        rotateMatrix1(arr1);
+        rotateMatrix1(arr2);
 
         System.out.println("After 90 degree transformation ->");
 
@@ -31,41 +32,18 @@ public class RotateMatrix90 {
 
     public static int[][] rotateMatrix1(int[][] arr) {
         int length = arr.length;
-        int flag = length -1;
-        boolean isOdd = length % 2 == 0 ? false : true;
-       for(int i = 0 ; i < length/2 ; i++) {
-           int temp = arr[i][i]; // Storing the left uppermost value //(1,1) -> 6
-           arr[i][i] = arr[flag][i]; // Setting up left uppermost value //(1,1) -> 6
-           arr[flag][i] = arr[flag][flag]; //Setting up left below most value //(1,1) -> 6
-           arr[flag][flag]= arr[i][flag]; // Setting up right below most vlaue
-           arr[i][flag]=temp; // Setting up right top most most value
-
-           for(int j = i ; j < length/ 2 ; j++) {
-               if( isOdd && j == length/2 - 1) {
-                   temp = arr[i][length/2];
-                   arr[i][length/2] = arr[length/2][i];
-                   arr[length/2][i] = arr[flag][length/2];
-                   arr[flag][length/2] = arr[length/2][flag];
-                   arr[length/2][flag] = temp;
-               }
-
-               else {
-                   temp = arr[i][i + 1];
-                   arr[i][i + 1] = arr[flag - 1][i];
-                   arr[flag - 1][i] = arr[flag][flag - 1];
-                   arr[flag][flag - 1] = arr[i + 1][flag];
-                   arr[i + 1][flag] = temp;
-
-                   temp = arr[i][flag - 1];
-                   arr[i][flag - 1] = arr[i + 1][i];
-                   arr[i + 1][i] = arr[flag][i + 1];
-                   arr[flag][i + 1] = arr[flag - 1][flag];
-                   arr[flag - 1][flag] = temp;
-               }
-           }
-
-           flag--;
-       }
+        for(int layer = 0 ; layer < length/2 ; layer++)  {
+           int first = layer;
+           int last = length - 1 - layer;
+           for(int i = layer ; i < last ; i++) {
+              int offset = i - layer;
+              int temp = arr[first][i];
+              arr[first][i] = arr[last-offset][first];
+              arr[last-offset][first] = arr[last][last-offset];
+              arr[last][last-offset] = arr[i][last];
+              arr[i][last] = temp;
+            }
+        }
 
        printArray(arr);
        return arr;
