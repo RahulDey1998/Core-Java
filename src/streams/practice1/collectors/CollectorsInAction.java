@@ -18,11 +18,10 @@ import java.util.stream.StreamSupport;
 
 public class CollectorsInAction {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
-		Path path = Paths.get("C:\\Users\\rahdey\\eclipse-workspace\\Core_Java\\src\\streams\\practice1\\collectors\\EmployeeData.txt");
+		Path path = Paths.get("D:\\Java_Projects\\Core-Java\\src\\streams\\practice1\\collectors\\EmployeeData.txt");
 		try(Stream<String> lines = Files.lines(path)) {
-			
 			Stream<String> wordStream = lines.flatMap(line -> Arrays.stream(line.split(",")));
 			Spliterator<String> wordSpliterator = wordStream.spliterator();
 			EmployeeSpliterator employeeSpliterator = new EmployeeSpliterator(wordSpliterator);
@@ -81,9 +80,6 @@ public class CollectorsInAction {
 			  
 			
 			
-			
-		}
-		catch(IOException e) {
 			
 		}
 	}

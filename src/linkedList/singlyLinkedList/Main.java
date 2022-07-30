@@ -16,7 +16,7 @@ public class Main {
         list.traverse();
 
         list.reverse();
-        list.deleteFirst(11);
+//        list.deleteFirst(11);
         System.out.println();
 
         list.traverse();

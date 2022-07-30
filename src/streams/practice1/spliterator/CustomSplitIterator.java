@@ -18,7 +18,7 @@ public class CustomSplitIterator {
 	
 	public static void main(String[] args) {
 		
-		Path path = Paths.get("C:\\Users\\rahdey\\eclipse-workspace\\Core_Java\\src\\streams\\practice1\\Books.txt"); 
+		Path path = Paths.get("D:\\Java_Projects\\Core-Java\\src\\streams\\practice1\\Books.txt");
 		try(Stream<String> lines = Files.lines(path);) {
 			Spliterator<String> baseSpliterator = lines.spliterator();
 			Spliterator<Book> bookSpliterator = new BookSpliterator(baseSpliterator);
