@@ -17,7 +17,10 @@ public class KeyPadCombination {
         char[][] keyList = {{'a','b','c'}, {'d','e','f'}, {'g','h','i'}, {'j','k','l'}, {'m','n','o'} ,
                 {'p','q','r'}, {'s','t','u'}, {'v','w','x'}, {'y','z'}, {'?', '!'}};
         getCombination(keyList, "01").forEach(System.out::println);
+        System.out.println();
         System.out.println(getCombination(keyList, "01").size());
+        System.out.println();
+        printKeyPadCombination(keyList, "01", "");
 
 
     }
@@ -38,6 +41,23 @@ public class KeyPadCombination {
             }
         }
         return result;
+    }
+
+
+    public static void printKeyPadCombination(char[][] keyPadNumbers, String digit, String result){
+
+        if(digit.length() == 0){
+            System.out.println(result);
+            return;
+        }
+
+        int currentDigit = Integer.valueOf(String.valueOf(digit.charAt(0)));
+        String subString = digit.substring(1);
+
+        for(int i = 0 ; i <keyPadNumbers[currentDigit].length; i++){
+            printKeyPadCombination(keyPadNumbers, subString, result + keyPadNumbers[currentDigit][i]);
+        }
+
     }
 
 
