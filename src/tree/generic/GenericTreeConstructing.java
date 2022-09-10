@@ -29,7 +29,7 @@ public class GenericTreeConstructing {
 //        System.out.println(tree.max(tree.root));
 //        System.out.println(tree.height(tree.root));
 //        tree.traverse(tree.root);
-        tree.levelOrderLineWise2(tree.root);
+        tree.levelOrder(tree.root);
 
     }
 
@@ -70,7 +70,7 @@ class GenericTree<T> {
             for (Node<T> node : root.childs) {
                 data = data.concat(node.data + ", ");
             }
-            data = data.substring(0, data.length() - 2).concat(".");
+            data = data.substring(0, data.length() - 2).concat("."); //removing last comma and put full stop
             System.out.println(data);
             for (Node<T> node : root.childs) {
                 printChilds(node);
